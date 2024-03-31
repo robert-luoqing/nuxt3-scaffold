@@ -1,7 +1,11 @@
 <template>
   <div>
-    <button @click="onClick">nav to test</button>
-    <input />
+    <a-space>
+      <th-button @click="onClick">nav to test</th-button>
+      <input />
+      <th-button @click="onShowError"> show error </th-button>
+      <th-input />
+    </a-space>
   </div>
 </template>
 
@@ -12,6 +16,10 @@ const router = useRouter();
 
 const onClick = () => {
   router.push('/test/test');
+};
+const { showError } = useToast();
+const onShowError = () => {
+  showError('Error information');
 };
 </script>
 <style lang="scss" scoped></style>

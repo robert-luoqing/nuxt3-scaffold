@@ -1,18 +1,24 @@
-export const useCommit = <T>() => {
+export const useHttpExecute = <T>() => {
   const pending = ref<boolean>(false);
   const data = ref<T>();
   const error = ref();
-  const getHttoOptions = useHttpOptions();
 
-  const commit = async (url: string, options: UseApiOptions) => {
+  const getHttpOptions = useHttpOptions();
+
+  const showErrorMsg = useHttpShowError();
+
+  const execute = async (url: string, options?: UseHttpOptions) => {
     try {
-      const httpOptions = getHttoOptions(options);
+      const httpOptions = getHttpOptions(options);
       pending.value = true;
       const result = await $fetch(url, httpOptions);
       data.value = result as any;
       return result;
     } catch (ex) {
       error.value = ex;
+      if (options?.showErrorToast) {
+        showErrorMsg(ex);
+      }
       throw ex;
     } finally {
       pending.value = false;
@@ -20,7 +26,7 @@ export const useCommit = <T>() => {
   };
 
   return {
-    commit,
+    execute,
     pending,
     data,
     error

@@ -18,11 +18,13 @@
     "animate.css": "^4.1.1",
     "lodash": "^4.17.21",
     "nuxt": "^3.11.1",
+    "nuxt-icons": "^3.2.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@ant-design-vue/nuxt": "^1.4.1",
     "@iconify-json/mdi": "^1.1.64",
     "@iconify/json": "^2.2.196",
     "@nuxt/eslint": "^0.3.0-beta.7",

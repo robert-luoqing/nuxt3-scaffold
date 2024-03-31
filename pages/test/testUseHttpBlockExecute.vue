@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-const { data: countries, pending, error, commit } = useCommitBlock();
+const { data: countries, pending, error, execute } = useHttpBlockExecute();
 const onClick = async () => {
-  await commit(async (fetch) => {
+  await execute(async (fetch) => {
     // write other logic code here.....
     const data1 = await fetch('/v3.1/all', { method: 'get' });
     // write other logic code here.....
@@ -22,4 +22,3 @@ const onClick = async () => {
   });
 };
 </script>
-<style lang="scss" scoped></style>

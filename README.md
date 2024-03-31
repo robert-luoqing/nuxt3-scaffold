@@ -31,11 +31,41 @@
 
 - https://unocss.dev/presets/attributify#attributify-mode
 
+# Antd compoinent
+
+- https://antdv.com/components/overview
+
 # Fetch Data
 
 在系统中不要直接用useFetch及$fetch
 
-- useApi
+- useHttpQuery
+  这个是用来做分页的，里面的execute或executeWithUrl来获取下一页的数据
+
+```
+<template>
+  <div>
+    <div class="w-full gap-x-4 text-4xl p-2 mt-4">
+      <div><a-button @click="onClick">Next</a-button></div>
+      <div>pending: {{ pending }}</div>
+      <div>error: {{ error }}</div>
+      <div>countries: {{ countries }}</div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const { data: countries, pending, error, execute } = await useHttpQuery('/api/users', { params: { pageIndex: 1 } });
+const onClick = async () => {
+  execute({
+    params: { pageIndex: 2 } 
+  });
+};
+</script>
+
+```
+
+- useHttpQueryDirectly
   这个hook封闭了useFetch, 使用方法如下
 
 ```
@@ -45,11 +75,11 @@
 <div>countries: {{ data }}</div>
 
 // script
-const { pending, data, error } = await useApi('/v3.1/all', { method: 'get' });
+const { pending, data, error } = await useHttpQueryDirectly('/v3.1/all', { method: 'get' });
 ```
 
-- useCommit
-  这是单个提交数据到服务器的hook, 注： 如果要通过回调绑定数据的话，单个useCommit应该应用到单个请求上去, 如果复用commit的话，请用useRawCommit
+- useHttpExecute
+  这是单个提交数据到服务器的hook, 注： 如果要通过回调绑定数据的话，单个useHttpExecute应该应用到单个请求上去, 如果复用execute的话，请用useHttpExecuteHandler
 
 ```
 // template
@@ -59,14 +89,14 @@ const { pending, data, error } = await useApi('/v3.1/all', { method: 'get' });
 <div><button @click="onClick">Load Countries</button></div>
 
 // script
-const { data: countries, pending, error, commit } = useCommit();
+const { data: countries, pending, error, execute } = useHttpExecute();
 const onClick = async () => {
-  const data = await commit('/v3.1/all', { method: 'get' });
+  const data = await execute('/v3.1/all', { method: 'get' });
   console.log('countries', data);
 };
 ```
 
-- useRawCommit
+- useHttpExecuteHandler
 
 ```
 // template
@@ -79,11 +109,11 @@ const onClick = async () => {
 const countries = ref();
 const pending = ref<boolean>(false);
 const error = ref();
-const { commit } = useCommit();
+const { execute } = useHttpExecuteHandler();
 const onClick = async () => {
   try {
     pending.value = true;
-    const data = await commit('/v3.1/all', { method: 'get' });
+    const data = await execute('/v3.1/all', { method: 'get' });
     countries.value = data;
   } catch (ex) {
     error.value = ex;
@@ -94,12 +124,12 @@ const onClick = async () => {
 
 ```
 
-- useCommitBlock
+- useHttpBlockExecute
 
 ```
 <template>
   <div>
-    <div>Test useCommitBlock Hook</div>
+    <div>Test useHttpBlockExecute Hook</div>
     <div class="w-full gap-x-4 text-4xl p-2 mt-4">
       <div>pending: {{ pending }}</div>
       <div>error: {{ error }}</div>
@@ -110,9 +140,9 @@ const onClick = async () => {
 </template>
 
 <script setup lang="ts">
-const { data: countries, pending, error, commit } = useCommitBlock();
+const { data: countries, pending, error, execute } = useHttpBlockExecute();
 const onClick = async () => {
-  await commit(async (fetch) => {
+  await execute(async (fetch) => {
     // write other logic code here.....
     const data1 = await fetch('/v3.1/all', { method: 'get' });
     // write other logic code here.....
@@ -123,3 +153,6 @@ const onClick = async () => {
 </script>
 
 ```
+
+# Library
+- https://nuxt.com/modules?category=Libraries

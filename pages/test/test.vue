@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
 const runtimeConfig = useRuntimeConfig();
-console.log('runtimeConfig', runtimeConfig.apiHost);
+console.log('runtimeConfig', runtimeConfig.public.apiHost);
 
 definePageMeta({
   layout: 'empty'
@@ -29,9 +29,9 @@ const counter = useState('counter', () => Math.round(Math.random() * 1000));
 const counter2 = ref(0);
 const authStore = useAuthStore();
 
-const { data: countries, pending, error, commit } = useCommit();
+const { data: countries, pending, error, execute } = useHttpExecute();
 const onClick = async () => {
-  const data = await commit('/v3.1/all', { method: 'get' });
+  const data = await execute('/v3.1/all', { method: 'get' });
   console.log('countries', data);
 };
 </script>

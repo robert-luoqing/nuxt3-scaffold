@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.scss', 'animate.css'],
@@ -11,7 +12,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt'],
+  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt', '@ant-design-vue/nuxt', 'nuxt-icons'],
   eslint: {
     checker: true,
     config: {
@@ -25,9 +26,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      meta: [{ name: 'description', content: 'affliate thinla' }],
+      meta: [{ name: 'description', content: 'beauty' }],
       bodyAttrs: {
-        style: 'width: 100%;height: 100%'
+        style: 'width: 100%;height: 100%;margin:0'
       }
     },
 
@@ -39,7 +40,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHost: 'https://api-test.thinla.com',
+      apiHost: '',
       httpTimeout: 30000
     }
   }
