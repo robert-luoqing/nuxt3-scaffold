@@ -15,9 +15,9 @@ const { data: countries, pending, error, commit } = useCommitBlock();
 const onClick = async () => {
   await commit(async (fetch) => {
     // write other logic code here.....
-    const data1 = await fetch('/cms/front/area/influencer/countries', { method: 'get' });
+    const data1 = await fetch('/v3.1/all', { method: 'get' });
     // write other logic code here.....
-    const data2 = await fetch('/cms/front/area/influencer/countries', { method: 'get' });
+    const data2 = await fetch('/v3.1/all', { method: 'get' });
     return { data1, data2 };
   });
 };

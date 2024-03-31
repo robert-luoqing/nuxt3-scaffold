@@ -11,7 +11,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const onClick = () => {
-  router.push('/test');
+  router.push('/test/test');
 };
 </script>
 <style lang="scss" scoped></style>
