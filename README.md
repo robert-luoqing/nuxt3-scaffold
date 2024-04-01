@@ -154,5 +154,9 @@ const onClick = async () => {
 
 ```
 
+# vueuse
+推荐使用vueuse
+- https://vueuse.org/functions.html
+
 # Library
 - https://nuxt.com/modules?category=Libraries

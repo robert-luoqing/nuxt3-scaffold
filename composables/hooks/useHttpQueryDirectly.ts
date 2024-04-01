@@ -10,16 +10,10 @@ export interface UseHttpOptions {
 }
 
 export const useHttpShowError = () => {
-  const { showError } = useToast();
-  const lastShowTime = ref(0);
-
+  const { showException } = useToast();
   const showErrorMsg = (error: any) => {
     if (error.value) {
-      const currentTime = new Date().getTime();
-      if (currentTime - lastShowTime.value > 1000) {
-        showError(error?.message || error?.statusMessage || 'Failed to post data to server');
-      }
-      lastShowTime.value = currentTime;
+      showException(error.value, 'Failed to post data to server');
     }
   };
 

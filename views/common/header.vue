@@ -7,7 +7,7 @@
       <a-space>
         <NuxtLink to="/features"> Features </NuxtLink>
         <NuxtLink to="/contact"> Contact </NuxtLink>
-        <NuxtLink to="/login"> Login </NuxtLink>
+        <NuxtLink to="/login"> {{ $t('common.login') }} </NuxtLink>
       </a-space>
     </div>
   </div>

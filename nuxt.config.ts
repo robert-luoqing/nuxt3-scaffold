@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt', '@ant-design-vue/nuxt', 'nuxt-icons'],
+  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt', '@ant-design-vue/nuxt', 'nuxt-icons', 'dayjs-nuxt', '@nuxtjs/i18n', '@vueuse/nuxt'],
   eslint: {
     checker: true,
     config: {
@@ -43,5 +43,16 @@ export default defineNuxtConfig({
       apiHost: '',
       httpTimeout: 30000
     }
+  },
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr' },
+      { code: 'zh', iso: 'zh-CN', file: 'zh.js', dir: 'ltr' }
+    ],
+    defaultLocale: 'en',
+    langDir: './locals',
+    // sortRoutes: false,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false
   }
 });
