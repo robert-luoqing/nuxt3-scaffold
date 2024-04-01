@@ -158,5 +158,9 @@ const onClick = async () => {
 推荐使用vueuse
 - https://vueuse.org/functions.html
 
+# AOS动画
+- https://michalsnik.github.io/aos/
+- https://github.com/michalsnik/aos?tab=readme-ov-file#api
+
 # Library
 - https://nuxt.com/modules?category=Libraries

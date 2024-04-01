@@ -5,9 +5,9 @@
     </div>
     <div class="flex flex-row">
       <a-space>
-        <NuxtLink to="/features"> Features </NuxtLink>
-        <NuxtLink to="/contact"> Contact </NuxtLink>
-        <NuxtLink to="/login"> {{ $t('common.login') }} </NuxtLink>
+        <NuxtLink to="/test/test2"> Features </NuxtLink>
+        <NuxtLink to="/test/test2"> Contact </NuxtLink>
+        <NuxtLink to="/test/test"> {{ $t('common.login') }} </NuxtLink>
       </a-space>
     </div>
   </div>

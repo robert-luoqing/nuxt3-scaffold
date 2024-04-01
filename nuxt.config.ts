@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt', '@ant-design-vue/nuxt', 'nuxt-icons', 'dayjs-nuxt', '@nuxtjs/i18n', '@vueuse/nuxt', '@nuxt/image'],
+  modules: ['@unocss/nuxt', '@nuxt/eslint', '@pinia/nuxt', '@ant-design-vue/nuxt', 'nuxt-icons', 'dayjs-nuxt', '@nuxtjs/i18n', '@vueuse/nuxt', '@nuxt/image', 'nuxt-aos'],
   eslint: {
     checker: true,
     config: {
