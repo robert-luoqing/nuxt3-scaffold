@@ -13,8 +13,8 @@ const props = defineProps<{
   display: inline-block;
 }
 .nuxt-icon svg {
-  margin: 0;
-  width: 100%;
-  height: 100%;
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>

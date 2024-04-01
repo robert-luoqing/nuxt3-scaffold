@@ -29,9 +29,9 @@ export const useHttpQueryDirectly = async (url: string, options?: UseHttpOptions
   const showErrorMsg = useHttpShowError();
   if (options?.showErrorToast && process.client) {
     watch(result.error, () => {
-      showErrorMsg(result.error.value);
+      showErrorMsg(result.error);
     });
-    showErrorMsg(result.error.value);
+    showErrorMsg(result.error);
   }
 
   return result;
