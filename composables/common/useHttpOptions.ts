@@ -4,7 +4,7 @@ export const useHttpOptions = () => {
   const httpTimeout = config.public.httpTimeout;
   const token = useCookie('token');
 
-  const getHttoOptions = (options?: UseHttpOptions): any => {
+  const getHttpOptions = (options?: UseHttpOptions): any => {
     return {
       ...(options || {}),
       baseURL: apiHost,
@@ -30,5 +30,5 @@ export const useHttpOptions = () => {
     };
   };
 
-  return getHttoOptions;
+  return getHttpOptions;
 };
