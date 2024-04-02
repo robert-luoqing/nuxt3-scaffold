@@ -1,8 +1,25 @@
+import { useAuth } from '@/composables/service/useAuth';
+
 export const useHttpOptions = () => {
   const config = useRuntimeConfig();
   const apiHost = config.public.apiHost;
   const httpTimeout = config.public.httpTimeout;
-  const token = useCookie('token');
+  const { getToken } = useAuth();
+
+  const getTransform = (value: any) => {
+    if (value) {
+      if (typeof value === 'string') {
+        value = JSON.parse(value);
+      }
+    }
+
+    // 这里是用于处理和服务器级定的错误信息
+    if (value?.status !== 200) {
+      throw createError({ statusCode: value?.status, statusText: value?.message || 'Unknown Server Error' });
+    }
+
+    return value;
+  };
 
   const getHttpOptions = (options?: UseHttpOptions): any => {
     return {
@@ -11,24 +28,11 @@ export const useHttpOptions = () => {
       timeout: httpTimeout || 30000,
       headers: {
         Accept: 'application/json',
-        token: token.value
+        Authentication: getToken()
       },
-      transform: (value: any) => {
-        if (value) {
-          if (typeof value === 'string') {
-            value = JSON.parse(value);
-          }
-        }
-
-        // 这里是用于处理和服务器级定的错误信息
-        // if (value?.status !== 200) {
-        // throw createError({ statusCode: value?.status, statusText: value?.message || 'Unknown error' });
-        // }
-
-        return value;
-      }
+      transform: getTransform
     };
   };
 
-  return getHttpOptions;
+  return { getHttpOptions, getTransform };
 };

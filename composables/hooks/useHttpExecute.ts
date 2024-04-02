@@ -3,7 +3,7 @@ export const useHttpExecute = <T>() => {
   const data = ref<T>();
   const error = ref();
 
-  const getHttpOptions = useHttpOptions();
+  const { getHttpOptions, getTransform } = useHttpOptions();
 
   const showErrorMsg = useHttpShowError();
 
@@ -11,8 +11,12 @@ export const useHttpExecute = <T>() => {
     try {
       const httpOptions = getHttpOptions(options);
       pending.value = true;
+
       const result = await $fetch(url, httpOptions);
+
       data.value = result as any;
+      getTransform(data.value);
+
       return result;
     } catch (ex) {
       error.value = ex;

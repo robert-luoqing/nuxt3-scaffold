@@ -1,11 +1,13 @@
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <a-extract-style>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </a-extract-style>
   </div>
 </template>
-<style>
+<style lang="scss">
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

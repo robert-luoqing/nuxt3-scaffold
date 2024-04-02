@@ -4,7 +4,7 @@ export const useHttpBlockExecute = <T>() => {
   const pending = ref<boolean>(false);
   const error = ref();
   const data = ref<T>();
-  const getHttpOptions = useHttpOptions();
+  const { getHttpOptions, getTransform } = useHttpOptions();
   const showErrorMsg = useHttpShowError();
 
   const execute = async (fn: (fetch: (url: string, options?: Omit<UseHttpOptions, 'showErrorToast'>) => any) => Promise<T>, showErrorToast?: boolean): Promise<T> => {
@@ -13,6 +13,7 @@ export const useHttpBlockExecute = <T>() => {
       const fetch = async (url: string, options?: Omit<UseHttpOptions, 'showErrorToast'>): Promise<any> => {
         const httpOptions = getHttpOptions(options);
         const resp = await $fetch(url, httpOptions);
+        getTransform(resp);
         return resp;
       };
       const result = await fn(fetch);

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-icon :name="props.name" filled v-bind="$attrs" width="250px" height="33px" class="w-[250px] h-[33px]" />
+  <nuxt-icon :name="props.name" filled v-bind="$attrs" />
 </template>
 
 <script lang="ts" setup>

@@ -12,8 +12,8 @@ export interface UseHttpOptions {
 export const useHttpShowError = () => {
   const { showException } = useToast();
   const showErrorMsg = (error: any) => {
-    if (error.value) {
-      showException(error.value, 'Failed to post data to server');
+    if (error) {
+      showException(error, 'Failed to post data to server');
     }
   };
 
@@ -21,7 +21,7 @@ export const useHttpShowError = () => {
 };
 
 export const useHttpQueryDirectly = async (url: string, options?: UseHttpOptions) => {
-  const getHttpOptions = useHttpOptions();
+  const { getHttpOptions } = useHttpOptions();
   const httpOptions = getHttpOptions(options);
 
   const result = useFetch(url, httpOptions);
@@ -29,9 +29,9 @@ export const useHttpQueryDirectly = async (url: string, options?: UseHttpOptions
   const showErrorMsg = useHttpShowError();
   if (options?.showErrorToast && process.client) {
     watch(result.error, () => {
-      showErrorMsg(result.error);
+      showErrorMsg(result.error.value);
     });
-    showErrorMsg(result.error);
+    showErrorMsg(result.error.value);
   }
 
   return result;

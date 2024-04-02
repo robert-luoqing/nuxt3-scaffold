@@ -1,5 +1,5 @@
 <template>
-  <a-input v-model="model" :disabled="props.disabled" :placeholder="props.placeholder" v-bind="$attrs" @change="onChange" />
+  <a-input-password v-model="model" :disabled="props.disabled" :placeholder="props.placeholder" v-bind="$attrs" @change="onChange" />
 </template>
 
 <script lang="ts" setup>

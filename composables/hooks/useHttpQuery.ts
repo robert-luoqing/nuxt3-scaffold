@@ -1,5 +1,5 @@
 export const useHttpQuery = async <T>(url: string, options?: UseHttpOptions) => {
-  const getHttpOptions = useHttpOptions();
+  const { getHttpOptions, getTransform } = useHttpOptions();
 
   const lastOptions = ref(options);
 
@@ -14,6 +14,7 @@ export const useHttpQuery = async <T>(url: string, options?: UseHttpOptions) => 
       pending.value = true;
       const httpOptions = getHttpOptions(options);
       const result: any = await $fetch(url, httpOptions);
+      getTransform(result);
       data.value = result;
       return result;
     } catch (ex: any) {
@@ -29,6 +30,7 @@ export const useHttpQuery = async <T>(url: string, options?: UseHttpOptions) => 
       pending.value = true;
       const httpOptions = getHttpOptions(options);
       const result: any = await $fetch(newUrl, httpOptions);
+      getTransform(result);
       data.value = result;
       return result;
     } catch (ex: any) {

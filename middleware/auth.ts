@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default defineNuxtRouteMiddleware((to, from) => {
-  // TODO 实现验证逻辑
-  // if (isAuthenticated() === false) {
-  //   return navigateTo('/login')
-  // }
+import { useAuth } from '@/composables/service/useAuth';
+export default defineNuxtRouteMiddleware(() => {
+  const { getToken } = useAuth();
+  if (!getToken()) {
+    return navigateTo('/login');
+  }
 });

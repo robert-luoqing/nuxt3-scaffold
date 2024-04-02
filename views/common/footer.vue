@@ -1,4 +1,6 @@
 <template>
-  <div>Footer123</div>
+  <footer>
+    <div>Footer</div>
+  </footer>
 </template>
 <script lang="ts" setup></script>

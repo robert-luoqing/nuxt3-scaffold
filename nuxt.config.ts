@@ -54,5 +54,8 @@ export default defineNuxtConfig({
     // sortRoutes: false,
     strategy: 'no_prefix',
     detectBrowserLanguage: false
+  },
+  antd: {
+    extractStyle: true
   }
 });

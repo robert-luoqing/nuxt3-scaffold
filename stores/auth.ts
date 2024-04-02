@@ -2,14 +2,22 @@ import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    userId: 'xxxx'
+    userId: '',
+    token: '',
+    userName: '',
+    displayName: ''
+    // Offer站没有role之分
+    // role: ''
   }),
   getters: {
-    getUser: (state) => state.userId
+    getAuthInfo: (state) => state
   },
   actions: {
-    increment() {
-      this.userId = 'xxxxfdsfd';
+    setAuthInfo(token: string, userId: string, userName: string, displayName: string) {
+      this.userId = userId;
+      this.token = token;
+      this.userName = userName;
+      this.displayName = displayName;
     }
   }
 });

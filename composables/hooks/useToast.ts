@@ -41,7 +41,7 @@ export const useToast = () => {
   };
   const showException = (ex: any, defaultMsg?: string) => {
     // Here is logic
-    const msg = ex.message || ex.statusText || defaultMsg || 'Unknown Error';
+    const msg = exceptionUtil.getMessage(ex, defaultMsg);
     if (!isDuplicateShowed(msg)) {
       message.error(msg);
     }
