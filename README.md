@@ -1,3 +1,8 @@
+
+# env
+- Node.js 20
+- Yarn
+
 # 学习资源
 
 - https://nuxt.com.cn/docs/getting-started/assets
@@ -152,6 +157,50 @@ const onClick = async () => {
 };
 </script>
 
+```
+
+# useMessage的用法
+最好不要直接用antd的Modal.info, Modal.success, Modal.warning, Modal.error, 而是用 const { info, success, warning, error } = useMessage(); 这个可以更好的管理所有Message的样式。
+- confirmSync, 这个是用于同步Confirm, 这个常用于简单的询问，询问后没有过多的复杂逻辑
+```
+const onOpenSyncConfirm = async () => {
+  const result = await confirmSync('Do you want delete this item?', 'Delete Confirm');
+  console.log('Result', result);
+};
+```
+- confirmAsync, 这个是用于异步Confirm, 这个常用于在确认后，要运行一段逻辑，在运行逻辑过程中，button的状态为loading. 这段逻辑运行完后, confirm窗才关闭掉。
+```
+  const result = await confirmAsync('Do you want delete this item?', 'Delete Confirm', {
+    callback: async (confirmResult:boolean) => {
+      await asyncUtil.wait(3000);
+    }
+  });
+  console.log('Result---------', result);
+```
+
+# th-button
+在这个组件中有一个loading-when-click属性，即在运行click时，该button处于loading状态，当click运行完后，手动关掉该loading状态，这个可以省去了loading状态的管理
+```
+<th-button :loading-when-click="true" @click="onButtonLoading">Test loading</th-button>
+
+const onButtonLoading = async ({ disableLoading }: ThButtonOptions) => {
+  try {
+    await asyncUtil.wait(3000);
+  } finally {
+    disableLoading();
+  }
+};
+```
+
+# 用openTHModal来简化打开modal窗口  
+这个在hot reload有bug,引用https://github.com/vercel/next.js/issues/52165.
+```
+const onOpenModal = () => {
+  openTHModal({
+    component: modalComponent,
+    closable: true
+  });
+};
 ```
 
 # vueuse

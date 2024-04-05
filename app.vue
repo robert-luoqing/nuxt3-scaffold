@@ -5,6 +5,7 @@
         <NuxtPage />
       </NuxtLayout>
     </a-extract-style>
+    <th-models></th-models>
   </div>
 </template>
 <style lang="scss">

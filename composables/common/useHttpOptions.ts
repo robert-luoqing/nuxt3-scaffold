@@ -14,9 +14,9 @@ export const useHttpOptions = () => {
     }
 
     // 这里是用于处理和服务器级定的错误信息
-    if (value?.status !== 200) {
-      throw createError({ statusCode: value?.status, statusText: value?.message || 'Unknown Server Error' });
-    }
+    // if (value?.status !== 200) {
+    //   throw createError({ statusCode: value?.status, statusText: value?.message || 'Unknown Server Error' });
+    // }
 
     return value;
   };
